@@ -1,0 +1,12 @@
+.LandingPage {
+  height: 100%;
+  width: 100%;
+}
+
+.LandingPage_main {
+  background-image: url("../../images/restaurant-690569_1920.jpg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: inherit;
+}
