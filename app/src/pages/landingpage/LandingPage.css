@@ -9,4 +9,11 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: inherit;
+  background-attachment: fixed;
+}
+
+.InputGroup {
+  padding: 30px 0;
+  width: 400px;
+  margin: 0 auto;
 }

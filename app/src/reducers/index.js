@@ -8,6 +8,14 @@ const testing = (state = null, actions) => {
   return state;
 };
 
+const restaurants = (state = [], actions) => {
+  if (actions.type === "LandingPage") {
+    state = actions.payload;
+    return state;
+  }
+  return state;
+};
+
 const auth = (state = null, actions) => {
   if (actions.type === "authenticated") {
     state = actions.payload;
@@ -27,6 +35,7 @@ const auth = (state = null, actions) => {
 const rootReducer = combineReducers({
   testing,
   auth,
+  restaurants,
 });
 
 export default rootReducer;
