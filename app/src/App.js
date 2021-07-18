@@ -1,15 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { connect } from "react-redux";
-import { test } from "./actions/index";
 import { Routes } from "./routes";
-import { NavBar } from "./components/Navbar";
+import NavBar from "./components/Navbar";
 
 class App extends React.Component {
-  componentDidMount() {
-    this.props.test();
-  }
+  componentDidMount() {}
 
   render() {
     return (
@@ -23,10 +20,9 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    testing: state.testing,
-    auth: state.auth,
+    user: state.user,
   };
 };
 
-const AppContainer = connect(mapStateToProps, { test })(App);
+const AppContainer = connect(mapStateToProps)(App);
 export default AppContainer;

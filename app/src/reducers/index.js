@@ -1,40 +1,61 @@
 import { combineReducers } from "redux";
 
-const testing = (state = null, actions) => {
-  if (actions.type === "testing") {
-    state = actions.payload;
-    return state;
-  }
-  return state;
+let initialUserState = {
+  token: localStorage.getItem("token"),
+  email: localStorage.getItem("user"),
+  id: localStorage.getItem("id"),
+  isAuthenticated: false,
+  loading: false,
+  errors: {},
 };
 
-const restaurants = (state = [], actions) => {
+let logOutState = {
+  token: "",
+  email: "",
+  id: "",
+  errors: {},
+  isAuthenticated: false,
+  loading: false,
+};
+
+function restaurants(state = [], actions) {
   if (actions.type === "LandingPage") {
     state = actions.payload;
     return state;
   }
   return state;
-};
+}
 
-const auth = (state = null, actions) => {
-  if (actions.type === "authenticated") {
-    state = actions.payload;
+function user(state = initialUserState, action) {
+  if (action.type === "LOGIN") {
+    return (state = {
+      ...state,
+      ...action.payload,
+      errors: {},
+      isAuthenticated: true,
+      loading: false,
+    });
+  } else if (action.type === "REGISTER") {
+    return (state = {
+      ...state,
+      ...action.payload,
+      errors: {},
+      isAuthenticated: true,
+      loading: false,
+    });
+  } else if (action.type === "SETTINGS") {
+    return (state = { ...state, ...action.payload, loading: false });
+  } else if (action.type === "ERRORS") {
+    return (state = { ...state, ...action.payload, loading: false });
+  } else if (action.type === "LOGOUT") {
+    return (state = logOutState);
+  } else {
     return state;
   }
-  if (actions.type === "verified") {
-    state = actions.payload;
-    return state;
-  }
-  if (actions.type === "logout") {
-    state = null;
-    return state;
-  }
-  return state;
-};
+}
 
 const rootReducer = combineReducers({
-  testing,
-  auth,
+  user,
   restaurants,
 });
 

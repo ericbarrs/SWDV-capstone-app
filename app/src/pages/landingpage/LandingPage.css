@@ -1,6 +1,7 @@
 .LandingPage {
   height: 100%;
   width: 100%;
+  padding-top: 50px;
 }
 
 .LandingPage_main {
@@ -10,6 +11,8 @@
   background-size: cover;
   height: inherit;
   background-attachment: fixed;
+  scroll-behavior: smooth;
+  overflow: overlay;
 }
 
 .InputGroup {

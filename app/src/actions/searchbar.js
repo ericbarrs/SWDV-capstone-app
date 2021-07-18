@@ -1,4 +1,4 @@
-export const landingPageSearch = (props) => {
+export const SearchForRestaurants = (props) => {
   const { city } = props;
   return function (dispatch) {
     fetch(`/restaurants/landingpage/${city}`)
