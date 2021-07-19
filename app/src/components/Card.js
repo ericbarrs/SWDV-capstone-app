@@ -68,8 +68,22 @@ class Cards extends React.Component {
                   </Card.Body>
                   {this.props.user.isAuthenticated && (
                     <Card.Body className="likeAndDislike">
-                      <Button variant="success">Like</Button>
-                      <Button variant="danger">Dislike</Button>
+                      <Button
+                        variant="success"
+                        onClick={(e) => {
+                          this.props.Like(business.id);
+                        }}
+                      >
+                        Like
+                      </Button>
+                      <Button
+                        variant="danger"
+                        onClick={(e) => {
+                          this.props.Dislike(business.id);
+                        }}
+                      >
+                        Dislike
+                      </Button>
                     </Card.Body>
                   )}
                 </Card>

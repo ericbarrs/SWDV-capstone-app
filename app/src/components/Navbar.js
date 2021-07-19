@@ -3,6 +3,7 @@ import { Container, Navbar, Button } from "react-bootstrap";
 import img1 from "../images/favicon-big.jpg";
 import { connect } from "react-redux";
 import LoginModal from "./LoginModal";
+import { LogoutAction } from "../actions/login";
 import CreateUserModal from "./CreateUserModal";
 import "../css/NavBar.css";
 
@@ -68,7 +69,12 @@ class NavBar extends React.Component {
                 <Button variant="info">Fav's</Button>
               )}
               {this.props.user.isAuthenticated && (
-                <Button variant="danger">Logout</Button>
+                <Button
+                  variant="danger"
+                  onClick={(e) => this.props.LogoutAction()}
+                >
+                  Logout
+                </Button>
               )}
             </div>
           </Container>
@@ -84,4 +90,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(NavBar);
+export default connect(mapStateToProps, { LogoutAction })(NavBar);

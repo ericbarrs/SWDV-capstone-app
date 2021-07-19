@@ -5,7 +5,6 @@ import LandingPage from "../pages/landingpage";
 import MainPage from "../pages/main";
 
 function RoutesContainer(props) {
-  console.log(props.user);
   return (
     <Switch>
       {!props.user.isAuthenticated && (

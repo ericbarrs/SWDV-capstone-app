@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
 let initialUserState = {
-  token: localStorage.getItem("token"),
-  email: localStorage.getItem("user"),
-  id: localStorage.getItem("id"),
+  token: "",
+  email: "",
+  _id: "",
   isAuthenticated: false,
   loading: false,
   errors: {},
@@ -12,14 +12,40 @@ let initialUserState = {
 let logOutState = {
   token: "",
   email: "",
-  id: "",
+  _id: "",
   errors: {},
   isAuthenticated: false,
   loading: false,
 };
 
+let InitalFilterPrice = "four";
+
+function savedRestaurants(state = [], actions) {
+  if (actions.type === "LIKE") {
+    state = actions.payload;
+    return state;
+  }
+  if (actions.type === "DISLIKE") {
+    state = actions.payload;
+    return state;
+  }
+  return state;
+}
+
 function restaurants(state = [], actions) {
-  if (actions.type === "LandingPage") {
+  if (actions.type === "LANDINGPAGE") {
+    state = actions.payload;
+    return state;
+  }
+  if (actions.type === "MAINPAGE") {
+    state = actions.payload;
+    return state;
+  }
+  return state;
+}
+
+function filterPrice(state = InitalFilterPrice, actions) {
+  if (actions.type === "FILTER") {
     state = actions.payload;
     return state;
   }
@@ -30,17 +56,28 @@ function user(state = initialUserState, action) {
   if (action.type === "LOGIN") {
     return (state = {
       ...state,
-      ...action.payload,
+      ...action.payload.user,
+      token: action.payload.token,
       errors: {},
-      isAuthenticated: true,
+      isAuthenticated: action.payload.isAuthenticated,
       loading: false,
     });
   } else if (action.type === "REGISTER") {
     return (state = {
       ...state,
-      ...action.payload,
+      ...action.payload.user,
+      token: action.payload.token,
       errors: {},
-      isAuthenticated: true,
+      isAuthenticated: action.payload.isAuthenticated,
+      loading: false,
+    });
+  } else if (action.type === "VERIFY") {
+    return (state = {
+      ...state,
+      ...action.payload.user,
+      token: action.payload.token,
+      errors: {},
+      isAuthenticated: action.payload.isAuthenticated,
       loading: false,
     });
   } else if (action.type === "SETTINGS") {
@@ -57,6 +94,8 @@ function user(state = initialUserState, action) {
 const rootReducer = combineReducers({
   user,
   restaurants,
+  filterPrice,
+  savedRestaurants,
 });
 
 export default rootReducer;

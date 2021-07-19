@@ -99,7 +99,7 @@ class CreateUserModal extends React.Component {
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Address</Form.Label>
+                <Form.Label>Street Address</Form.Label>
                 <Form.Control
                   type="string"
                   name="street_address1"
@@ -112,7 +112,7 @@ class CreateUserModal extends React.Component {
                 <Form.Control
                   type="string"
                   name="street_address2"
-                  placeholder="Address 2"
+                  placeholder="Street Address 2"
                   onChange={(e) => this.formHandler(e)}
                 />
               </Form.Group>
@@ -157,7 +157,11 @@ class CreateUserModal extends React.Component {
             </Button>
             <Button
               variant="success"
-              onClick={() => props.CreateUserAction(this.state)}
+              onClick={() => {
+                props.handleClose();
+
+                props.CreateUserAction(this.state);
+              }}
             >
               Create
             </Button>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import { connect } from "react-redux";
+import { LoginAction } from "../actions/login";
 
 class LoginModal extends React.Component {
   state = {
@@ -55,7 +56,15 @@ class LoginModal extends React.Component {
             <Button variant="warning" onClick={props.handleClose}>
               Cancel
             </Button>
-            <Button variant="success">Submit</Button>
+            <Button
+              variant="success"
+              onClick={(e) => {
+                props.LoginAction(this.state.user);
+                props.handleClose();
+              }}
+            >
+              Submit
+            </Button>
           </Modal.Footer>
         </Modal>
       </>
@@ -69,4 +78,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(LoginModal);
+const mapDispatchToProps = {
+  LoginAction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);

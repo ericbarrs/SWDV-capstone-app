@@ -15,14 +15,14 @@ class Searchbar extends React.Component {
     return (
       <div className="InputGroup">
         <InputGroup size="lg">
-          <Button
+          {/* <Button
             variant="danger"
-            onClick={(e) =>
-              this.props.SearchForRestaurants({ city: this.state.city })
-            }
+            // onClick={(e) =>
+            //   this.props.SearchForRestaurants({ city: this.state.city })
+            // }
           >
             clear
-          </Button>
+          </Button> */}
           <FormControl
             placeholder="Input City or Zipcode"
             aria-label="Users City or zipcode with search button"
@@ -31,7 +31,10 @@ class Searchbar extends React.Component {
           <Button
             variant="success"
             onClick={(e) =>
-              this.props.SearchForRestaurants({ city: this.state.city })
+              this.props.SearchForRestaurants({
+                city: this.state.city,
+                page: this.props.page,
+              })
             }
           >
             Search

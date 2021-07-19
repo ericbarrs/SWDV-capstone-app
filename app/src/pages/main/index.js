@@ -1,16 +1,18 @@
 import React from "react";
 // import "./LandingPage.css";
 import { connect } from "react-redux";
-// import Cards from "../../components/Card";
+import FilteredCards from "../../components/FilterCards";
 import Searchbar from "../../components/searchbar";
+import FilterButton from "../../components/FilterButton";
 
 class MainPageContainer extends React.Component {
   render() {
     return (
       <div className="LandingPage">
         <div className="LandingPage_main">
-          <Searchbar />
-          {/* {!!this.props.restaurants.length && <Cards />} */}
+          <Searchbar page={"mainPage"} />
+          <FilterButton />
+          {!!this.props.restaurants.length && <FilteredCards />}
         </div>
       </div>
     );
@@ -20,6 +22,7 @@ class MainPageContainer extends React.Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    restaurants: state.restaurants,
   };
 };
 

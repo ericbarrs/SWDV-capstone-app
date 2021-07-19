@@ -9,7 +9,7 @@ class LandingPage extends React.Component {
     return (
       <div className="LandingPage">
         <div className="LandingPage_main">
-          <Searchbar />
+          <Searchbar page={"landingPage"} />
           {!!this.props.restaurants.length && <Cards />}
         </div>
       </div>
