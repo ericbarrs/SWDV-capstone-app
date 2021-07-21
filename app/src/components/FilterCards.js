@@ -16,7 +16,6 @@ class FilterCards extends React.Component {
   Getlikes(id) {
     if (
       this.props.savedRestaurants.likes.some((obj) => {
-        console.log(obj[id] === this.props.user._id);
         return obj[id] === this.props.user._id;
       })
     ) {
@@ -44,7 +43,6 @@ class FilterCards extends React.Component {
         return x;
       });
 
-    // console.log(businesses[0]);
     return (
       <div className="Card_Container">
         {businesses[0].map((business) => {

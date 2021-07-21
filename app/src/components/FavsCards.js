@@ -24,7 +24,6 @@ class FavsCards extends React.Component {
     return (
       <div className="Card_Container">
         {this.props.favs.map((business) => {
-          console.log(business.categories);
           return (
             <div className="Cards" id={business.id} key={business.id}>
               <Card style={{ width: "18rem" }}>

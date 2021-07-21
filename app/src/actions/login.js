@@ -1,6 +1,6 @@
 export const CreateUserAction = ({ user }) => {
   return function (dispatch) {
-    fetch("https://mylocalfood-server.herokuapp.com//users", {
+    fetch("https://mylocalfood-server.herokuapp.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -17,7 +17,7 @@ export const CreateUserAction = ({ user }) => {
 
 export const LoginAction = (body) => {
   return function (dispatch) {
-    fetch("https://mylocalfood-server.herokuapp.com//login", {
+    fetch("https://mylocalfood-server.herokuapp.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
