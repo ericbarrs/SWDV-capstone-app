@@ -19,7 +19,7 @@ export const SearchForRestaurants = (props) => {
   };
 };
 
-export const clearRestaurants = () => {
+export const clearRestaurants = (props) => {
   const { page } = props;
   return function (dispatch) {
     if (page === "landingPage") {
