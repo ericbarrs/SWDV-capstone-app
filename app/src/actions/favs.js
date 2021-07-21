@@ -1,7 +1,7 @@
 export const GetFavs = () => {
   const token = localStorage.getItem("token");
   return function (dispatch) {
-    fetch("/favs", {
+    fetch("https://mylocalfood-server.herokuapp.com/favs", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

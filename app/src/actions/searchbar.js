@@ -2,13 +2,15 @@ export const SearchForRestaurants = (props) => {
   const { city, page } = props;
   return function (dispatch) {
     if (page === "landingPage") {
-      fetch(`/restaurants/landingpage/${city}`)
+      fetch(
+        `https://mylocalfood-server.herokuapp.com/restaurants/landingpage/${city}`
+      )
         .then((res) => res.json())
         .then((data) => {
           dispatch(restaurant(data, "LANDINGPAGE"));
         });
     } else if (page === "mainPage") {
-      fetch(`/restaurants?city=${city}`)
+      fetch(`https://mylocalfood-server.herokuapp.com/restaurants?city=${city}`)
         .then((res) => res.json())
         .then((data) => {
           dispatch(restaurants(data, "MAINPAGE"));

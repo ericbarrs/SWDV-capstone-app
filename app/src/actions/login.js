@@ -1,6 +1,6 @@
 export const CreateUserAction = ({ user }) => {
   return function (dispatch) {
-    fetch("/users", {
+    fetch("https://git.heroku.com/mylocalfood-server.git/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -17,7 +17,7 @@ export const CreateUserAction = ({ user }) => {
 
 export const LoginAction = (body) => {
   return function (dispatch) {
-    fetch("/login", {
+    fetch("https://git.heroku.com/mylocalfood-server.git/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export const LogoutAction = () => {
 export const getAuth = () => {
   return function (dispatch) {
     const token = localStorage.getItem("token");
-    fetch("/login/verify", {
+    fetch("https://mylocalfood-server.herokuapp.com/login/verify", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

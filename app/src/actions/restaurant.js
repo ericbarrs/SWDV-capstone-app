@@ -1,7 +1,7 @@
 export const Like = (id, data) => {
   const token = localStorage.getItem("token");
   return function (dispatch) {
-    fetch("/restaurants/like", {
+    fetch("https://git.heroku.com/mylocalfood-server.git/restaurants/like", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,7 +18,7 @@ export const Like = (id, data) => {
 export const Dislike = (id, data) => {
   const token = localStorage.getItem("token");
   return function (dispatch) {
-    fetch("/restaurants/dislike", {
+    fetch("https://git.heroku.com/mylocalfood-server.git/restaurants/dislike", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +35,7 @@ export const Dislike = (id, data) => {
 export const GetStatus = () => {
   const token = localStorage.getItem("token");
   return function (dispatch) {
-    fetch("/restaurants/status", {
+    fetch("https://mylocalfood-server.herokuapp.com/restaurants/status", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

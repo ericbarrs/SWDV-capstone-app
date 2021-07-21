@@ -23,9 +23,3 @@ body {
   font-style: italic;
   text-decoration: none !important;
 }
-
-@media (max-width: 500px) {
-  .MainPageHeader {
-    color: tomato;
-  }
-}
