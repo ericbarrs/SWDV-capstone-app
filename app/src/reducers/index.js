@@ -60,6 +60,10 @@ function LandingPageRest(state = [], actions) {
     state = actions.payload;
     return state;
   }
+  if (actions.type === "RESET") {
+    state = actions.payload;
+    return state;
+  }
   return state;
 }
 
@@ -68,7 +72,7 @@ function restaurants(state = [], actions) {
     state = actions.payload;
     return state;
   }
-  if (actions.type === "RESET") {
+  if (actions.type === "MAINRESET") {
     state = actions.payload;
     return state;
   }

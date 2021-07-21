@@ -17,7 +17,9 @@ class Searchbar extends React.Component {
         <InputGroup size="lg">
           <Button
             variant="danger"
-            onClick={(e) => this.props.clearRestaurants()}
+            onClick={(e) =>
+              this.props.clearRestaurants({ page: this.props.page })
+            }
           >
             clear
           </Button>

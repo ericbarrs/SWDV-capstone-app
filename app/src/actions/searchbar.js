@@ -20,8 +20,13 @@ export const SearchForRestaurants = (props) => {
 };
 
 export const clearRestaurants = () => {
+  const { page } = props;
   return function (dispatch) {
-    dispatch(restaurants([], "RESET"));
+    if (page === "landingPage") {
+      dispatch(restaurants([], "RESET"));
+    } else if (page === "mainPage") {
+      dispatch(restaurants([], "MAINRESET"));
+    }
   };
 };
 
