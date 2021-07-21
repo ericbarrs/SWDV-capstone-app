@@ -3,6 +3,8 @@ import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import LandingPage from "../pages/landingpage";
 import MainPage from "../pages/main";
+import Favs from "../pages/favs";
+import SettingsPage from "../pages/settings";
 
 function RoutesContainer(props) {
   return (
@@ -13,9 +15,17 @@ function RoutesContainer(props) {
         </Route>
       )}
       {props.user.isAuthenticated && (
-        <Route exact path="/">
-          <MainPage />
-        </Route>
+        <>
+          <Route exact path="/">
+            <MainPage />
+          </Route>
+          <Route path="/favs">
+            <Favs />
+          </Route>
+          <Route path="/settings">
+            <SettingsPage />
+          </Route>
+        </>
       )}
     </Switch>
   );

@@ -9,6 +9,7 @@ export const CreateUserAction = ({ user }) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        localStorage.setItem("token", data.token);
         dispatch(auth(data, "REGISTER"));
       });
   };

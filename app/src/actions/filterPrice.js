@@ -1,6 +1,5 @@
 export const filterPrice = (filter) => {
   return function (dispatch) {
-    fetch("https://jsonplaceholder.typicode.com/posts");
     dispatch(filtered(filter));
   };
 };

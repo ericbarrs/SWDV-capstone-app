@@ -17,10 +17,16 @@ export const SearchForRestaurants = (props) => {
   };
 };
 
+export const clearRestaurants = () => {
+  return function (dispatch) {
+    dispatch(restaurants([], "RESET"));
+  };
+};
+
 const restaurant = (data, type) => {
   return {
     type,
-    payload: data.businesses,
+    payload: data,
   };
 };
 

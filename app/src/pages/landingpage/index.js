@@ -9,9 +9,17 @@ class LandingPage extends React.Component {
     return (
       <div className="LandingPage">
         <div className="LandingPage_main">
+          <div className="jumbotron jumbotron-fluid">
+            <div className="container">
+              <h1 className="display-4">Welcome to Mylocalfood</h1>
+              <p className="lead">Enter a zipcode or city to get started</p>
+            </div>
+            <hr className="my-4" />
+          </div>
           <Searchbar page={"landingPage"} />
-          {!!this.props.restaurants.length && <Cards />}
+          {!!this.props.LandingPageRest.length && <Cards />}
         </div>
+        <div id="overlay"></div>
       </div>
     );
   }
@@ -19,7 +27,7 @@ class LandingPage extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    restaurants: state.restaurants,
+    LandingPageRest: state.LandingPageRest,
   };
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/card.css";
-import { Card, Button, Tooltip, OverlayTrigger } from "react-bootstrap";
+import { Card, Tooltip, OverlayTrigger } from "react-bootstrap";
 import { connect } from "react-redux";
 import { metersToMiles } from "../functions/metersToMiles";
 
@@ -12,96 +12,72 @@ class Cards extends React.Component {
   }
 
   render() {
-    if (this.props.restaurants) {
-      return (
-        <div className="Card_Container">
-          {this.props.restaurants.map((business) => {
-            return (
-              <div className="Cards" id={business.id} key={business.id}>
-                <Card style={{ width: "18rem" }}>
-                  <OverlayTrigger
-                    trigger="click"
-                    className="overlay"
-                    placement="bottom-start"
-                    overlay={
-                      <Tooltip id="button-tooltip-2">
-                        {business.categories.map((catogories, index) => {
-                          if (business.categories.length - 1 === index) {
-                            return <span key={index}>{catogories.title} </span>;
-                          }
-                          return (
-                            <span key={index}>{catogories.title + ", "} </span>
-                          );
-                        })}
-                      </Tooltip>
-                    }
-                  >
-                    <Card.Img
-                      className="Cards_image"
-                      variant="top"
-                      src={business.image_url}
-                    />
-                  </OverlayTrigger>
-                  <Card.Body>
-                    <Card.Title>
-                      <a href={business.url}>{business.name}</a>
-                    </Card.Title>
+    return (
+      <div className="Card_Container">
+        {this.props.LandingPageRest.map((business) => {
+          console.log(business);
+          return (
+            <div className="Cards" id={business.id} key={business.id}>
+              <Card style={{ width: "18rem" }}>
+                <OverlayTrigger
+                  trigger="click"
+                  className="overlay"
+                  placement="bottom-start"
+                  overlay={
+                    <Tooltip id="button-tooltip-2">
+                      {business.categories.map((catogories, index) => {
+                        if (business.categories.length - 1 === index) {
+                          return <span key={index}>{catogories.title} </span>;
+                        }
+                        return (
+                          <span key={index}>{catogories.title + ", "} </span>
+                        );
+                      })}
+                    </Tooltip>
+                  }
+                >
+                  <Card.Img
+                    className="Cards_image"
+                    variant="top"
+                    src={business.image_url}
+                  />
+                </OverlayTrigger>
+                <Card.Body>
+                  <Card.Title>
+                    <a href={business.url}>{business.name}</a>
+                  </Card.Title>
 
-                    <div>
-                      <a
-                        href={`http://maps.google.com/?q=${this.addressHandler(
-                          business.location.display_address
-                        )}`}
-                      >
-                        {this.addressHandler(business.location.display_address)}
-                      </a>
+                  <div>
+                    <a
+                      href={`http://maps.google.com/?q=${this.addressHandler(
+                        business.location.display_address
+                      )}`}
+                    >
+                      {this.addressHandler(business.location.display_address)}
+                    </a>
+                  </div>
+                  <div className="info">
+                    <div className="isOpen">
+                      {business.is_closed ? "Closed" : "Open"}
                     </div>
-                    <div className="info">
-                      <div className="isOpen">
-                        {business.is_closed ? "Closed" : "Open"}
-                      </div>
-                      <div>Reviews: {business.review_count}</div>
-                    </div>
-                    <div>{metersToMiles(business.distance)} miles</div>
-                    <div>Yelp Rating: {business.rating}</div>
-                    <div>Price: {business.price}</div>
-                  </Card.Body>
-                  {this.props.user.isAuthenticated && (
-                    <Card.Body className="likeAndDislike">
-                      <Button
-                        variant="success"
-                        onClick={(e) => {
-                          this.props.Like(business.id);
-                        }}
-                      >
-                        Like
-                      </Button>
-                      <Button
-                        variant="danger"
-                        onClick={(e) => {
-                          this.props.Dislike(business.id);
-                        }}
-                      >
-                        Dislike
-                      </Button>
-                    </Card.Body>
-                  )}
-                </Card>
-              </div>
-            );
-          })}
-        </div>
-      );
-    } else {
-      return null;
-    }
+                    <div>Reviews: {business.review_count}</div>
+                  </div>
+                  <div>{metersToMiles(business.distance)} miles</div>
+                  <div>Yelp Rating: {business.rating}</div>
+                  <div>Price: {business.price}</div>
+                </Card.Body>
+              </Card>
+            </div>
+          );
+        })}
+      </div>
+    );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
-    restaurants: state.restaurants,
+    LandingPageRest: state.LandingPageRest,
   };
 };
 

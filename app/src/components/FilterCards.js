@@ -4,6 +4,7 @@ import { Card, Button, Tooltip, OverlayTrigger } from "react-bootstrap";
 import { connect } from "react-redux";
 import { metersToMiles } from "../functions/metersToMiles";
 import { Like, Dislike } from "../actions/restaurant";
+import { GetStatus } from "../actions/restaurant";
 
 class FilterCards extends React.Component {
   addressHandler(arr) {
@@ -12,20 +13,41 @@ class FilterCards extends React.Component {
     return string;
   }
 
+  Getlikes(id) {
+    if (
+      this.props.savedRestaurants.likes.some((obj) => {
+        console.log(obj[id] === this.props.user._id);
+        return obj[id] === this.props.user._id;
+      })
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  GetDislikes(id) {
+    if (
+      this.props.savedRestaurants.dislikes.some(
+        (obj) => obj[id] === this.props.user._id
+      )
+    ) {
+      return true;
+    }
+    return false;
+  }
+
   render() {
     const businesses = this.props.restaurants
       .filter((business) => business[this.props.filterPrice])
       .map((bus) => {
         const x = bus[this.props.filterPrice];
-        const { businesses } = x;
-        return businesses;
+        return x;
       });
 
     // console.log(businesses[0]);
-
     return (
       <div className="Card_Container">
-        {businesses[0].map((business, index) => {
+        {businesses[0].map((business) => {
           return (
             <div className="Cards" id={business.id} key={business.id}>
               <Card style={{ width: "18rem" }}>
@@ -52,7 +74,7 @@ class FilterCards extends React.Component {
                     src={business.image_url}
                   />
                 </OverlayTrigger>
-                <Card.Body>
+                <Card.Body className="main_body">
                   <Card.Title>
                     <a href={business.url}>{business.name}</a>
                   </Card.Title>
@@ -75,26 +97,39 @@ class FilterCards extends React.Component {
                   <div>{metersToMiles(business.distance)} miles</div>
                   <div>Yelp Rating: {business.rating}</div>
                   <div>Price: {business.price}</div>
+                  <Card.Body className="likeAndDislikeText">
+                    {this.Getlikes(business.id) && <div>Liked</div>}
+                    {this.GetDislikes(business.id) && <div>Disliked</div>}
+                  </Card.Body>
                 </Card.Body>
                 {this.props.user.isAuthenticated && (
                   <Card.Body className="likeAndDislike">
                     <Button
-                      variant="success"
+                      variant={
+                        this.Getlikes(business.id)
+                          ? "outline-success"
+                          : "success"
+                      }
                       onClick={(e) => {
                         this.props.Like(business.id, business);
+                        this.props.GetStatus();
                       }}
                     >
                       Like
                     </Button>
                     <Button
-                      variant="danger"
+                      variant={
+                        this.GetDislikes(business.id)
+                          ? "outline-danger"
+                          : "danger"
+                      }
                       onClick={(e) => {
                         this.props.Dislike(business.id, business);
+                        this.props.GetStatus();
                       }}
                     >
                       Dislike
                     </Button>
-                    {/* {<Card.Text></Card.Text>} */}
                   </Card.Body>
                 )}
               </Card>
@@ -111,10 +146,13 @@ const mapStateToProps = (state) => {
     filterPrice: state.filterPrice,
     user: state.user,
     restaurants: state.restaurants,
+    savedRestaurants: state.savedRestaurants,
   };
 };
 
-const FilteredCardsContainer = connect(mapStateToProps, { Like, Dislike })(
-  FilterCards
-);
+const FilteredCardsContainer = connect(mapStateToProps, {
+  Like,
+  Dislike,
+  GetStatus,
+})(FilterCards);
 export default FilteredCardsContainer;

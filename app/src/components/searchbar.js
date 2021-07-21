@@ -1,7 +1,7 @@
 import React from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 import { connect } from "react-redux";
-import { SearchForRestaurants } from "../actions/searchbar";
+import { SearchForRestaurants, clearRestaurants } from "../actions/searchbar";
 
 class Searchbar extends React.Component {
   state = {
@@ -15,16 +15,14 @@ class Searchbar extends React.Component {
     return (
       <div className="InputGroup">
         <InputGroup size="lg">
-          {/* <Button
+          <Button
             variant="danger"
-            // onClick={(e) =>
-            //   this.props.SearchForRestaurants({ city: this.state.city })
-            // }
+            onClick={(e) => this.props.clearRestaurants()}
           >
             clear
-          </Button> */}
+          </Button>
           <FormControl
-            placeholder="Input City or Zipcode"
+            placeholder="City or Zipcode"
             aria-label="Users City or zipcode with search button"
             onChange={(e) => this.updateInput(e)}
           />
@@ -51,7 +49,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const SearchbarContainer = connect(mapStateToProps, { SearchForRestaurants })(
-  Searchbar
-);
+const SearchbarContainer = connect(mapStateToProps, {
+  SearchForRestaurants,
+  clearRestaurants,
+})(Searchbar);
 export default SearchbarContainer;

@@ -20,7 +20,27 @@ let logOutState = {
 
 let InitalFilterPrice = "four";
 
-function savedRestaurants(state = [], actions) {
+function favs(
+  state = [
+    { id: "", categories: [{ title: "" }], location: { display_address: [] } },
+  ],
+  actions
+) {
+  if (actions.type === "GETFAVS") {
+    state = actions.payload;
+    return state;
+  }
+  if (actions.type === "LOGOUT") {
+    return (state = []);
+  }
+  return state;
+}
+
+function savedRestaurants(state = { likes: [], dislikes: [] }, actions) {
+  if (actions.type === "STATUS") {
+    state = actions.payload;
+    return state;
+  }
   if (actions.type === "LIKE") {
     state = actions.payload;
     return state;
@@ -29,17 +49,32 @@ function savedRestaurants(state = [], actions) {
     state = actions.payload;
     return state;
   }
+  if (actions.type === "LOGOUT") {
+    return (state = {});
+  }
   return state;
 }
 
-function restaurants(state = [], actions) {
+function LandingPageRest(state = [], actions) {
   if (actions.type === "LANDINGPAGE") {
     state = actions.payload;
     return state;
   }
+  return state;
+}
+
+function restaurants(state = [], actions) {
   if (actions.type === "MAINPAGE") {
     state = actions.payload;
     return state;
+  }
+  if (actions.type === "RESET") {
+    state = actions.payload;
+    return state;
+  }
+
+  if (actions.type === "LOGOUT") {
+    return (state = []);
   }
   return state;
 }
@@ -96,6 +131,8 @@ const rootReducer = combineReducers({
   restaurants,
   filterPrice,
   savedRestaurants,
+  favs,
+  LandingPageRest,
 });
 
 export default rootReducer;

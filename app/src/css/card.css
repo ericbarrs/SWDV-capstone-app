@@ -17,12 +17,18 @@
   background: #ddd;
   max-width: 300px;
 
-  min-height: 350px;
+  min-height: 550px;
   max-height: 550px;
+  box-sizing: border-box;
+}
+
+.Cards .main_body {
+  min-height: 234px;
 }
 
 .card {
   min-height: 100%;
+  font-size: 14px;
 }
 
 .Cards_image {
@@ -51,7 +57,4 @@
 .likeAndDislike button {
   width: 85px;
   text-align: center;
-}
-
-.overlay {
 }

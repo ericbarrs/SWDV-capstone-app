@@ -10,7 +10,7 @@ export const Like = (id, data) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        dispatch(post(data));
+        dispatch(post(data, "LIKE"));
       });
   };
 };
@@ -27,14 +27,31 @@ export const Dislike = (id, data) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        dispatch(post(data));
+        dispatch(post(data, "DISLIKE"));
       });
   };
 };
 
-const post = (data) => {
+export const GetStatus = () => {
+  const token = localStorage.getItem("token");
+  return function (dispatch) {
+    fetch("/restaurants/status", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(post(data, "STATUS"));
+      });
+  };
+};
+
+const post = (data, type) => {
   return {
-    type: "LIKE",
+    type,
     payload: data,
   };
 };
