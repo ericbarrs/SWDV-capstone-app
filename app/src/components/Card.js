@@ -15,7 +15,6 @@ class Cards extends React.Component {
     return (
       <div className="Card_Container">
         {this.props.LandingPageRest.map((business) => {
-          console.log(business);
           return (
             <div className="Cards" id={business.id} key={business.id}>
               <Card style={{ width: "18rem" }}>

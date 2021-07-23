@@ -36,6 +36,7 @@ class Searchbar extends React.Component {
                 page: this.props.page,
               })
             }
+            disabled={!this.state.city}
           >
             Search
           </Button>

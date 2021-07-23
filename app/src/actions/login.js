@@ -15,7 +15,7 @@ export const CreateUserAction = ({ user }) => {
   };
 };
 
-export const LoginAction = (body) => {
+export const LoginAction = ({ token, body }) => {
   return function (dispatch) {
     fetch("https://mylocalfood-server.herokuapp.com/login", {
       method: "POST",
@@ -28,6 +28,23 @@ export const LoginAction = (body) => {
       .then((data) => {
         localStorage.setItem("token", data.token);
         dispatch(auth(data, "LOGIN"));
+      });
+  };
+};
+
+export const UpdateUserAction = (token, user) => {
+  return function (dispatch) {
+    fetch("/users", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token, user }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // dispatch(auth(data, "UPDATEUSER"));
       });
   };
 };
