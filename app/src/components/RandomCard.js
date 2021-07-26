@@ -32,7 +32,6 @@ class RandomCard extends React.Component {
     getRandom() {
         const x = Math.floor(Math.random() * (this.props.random.length - 1));
         this.setState({ rand: x });
-        console.log(x);
     }
 
     componentDidMount() {

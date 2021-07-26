@@ -18,7 +18,6 @@ export const CreateUserAction = ({ user }) => {
 };
 
 export const LoginAction = (user) => {
-    console.log(user);
     return function (dispatch) {
         fetch(`${process.env.REACT_APP_BASE_URL}login`, {
             method: "POST",
