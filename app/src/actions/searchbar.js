@@ -3,14 +3,14 @@ export const SearchForRestaurants = (props) => {
   return function (dispatch) {
     if (page === "landingPage") {
       fetch(
-        `https://mylocalfood-server.herokuapp.com/restaurants/landingpage/${city}`
+        `${process.env.REACT_APP_BASE_URL}restaurants/landingpage/${city}`
       )
         .then((res) => res.json())
         .then((data) => {
           dispatch(restaurant(data.businesses, "LANDINGPAGE"));
         });
     } else if (page === "mainPage") {
-      fetch(`https://mylocalfood-server.herokuapp.com/restaurants?city=${city}`)
+      fetch(`${process.env.REACT_APP_BASE_URL}restaurants?city=${city}`)
         .then((res) => res.json())
         .then((data) => {
           dispatch(restaurants(data, "MAINPAGE"));

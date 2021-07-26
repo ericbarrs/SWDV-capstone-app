@@ -8,7 +8,7 @@ export class FilterButton extends Component {
   render() {
     return (
       <div className="filterButton">
-        <Form w-100>
+        <Form>
           <Form.Group as={Row} className="">
             <Form.Label column sm="4" style={{ fontSize: "18px" }}>
               Price
