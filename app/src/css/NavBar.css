@@ -3,6 +3,7 @@
 }
 
 .navbar-nav {
-    display: inline-block;
+    display: flex !important;
+    justify-content: end;
     margin-top: 5px;
 }

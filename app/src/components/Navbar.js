@@ -52,7 +52,7 @@ class NavBar extends React.Component {
                         id="responsive-navbar-nav"
                         className="justify-content-end"
                     >
-                        <Nav className="me-auto">
+                        <Nav className="">
                             {!this.props.user.isAuthenticated && (
                                 <LinkContainer to="/">
                                     <Nav.Link>
