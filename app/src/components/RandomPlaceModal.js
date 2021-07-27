@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Modal, Form } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { connect } from "react-redux";
 import { LoginAction } from "../actions/login";
 import RandomCard from "./RandomCard";

@@ -1,3 +1,8 @@
-#nav_button_div button {
-  margin: 0 5px;
+.navbar-nav button {
+    margin: 0 5px;
+}
+
+.navbar-nav {
+    display: inline-block;
+    margin-top: 5px;
 }
