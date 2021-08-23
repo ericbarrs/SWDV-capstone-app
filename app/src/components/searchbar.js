@@ -21,7 +21,7 @@ class Searchbar extends React.Component {
               this.props.clearRestaurants({ page: this.props.page })
             }
           >
-            clear
+            Clear
           </Button>
           <FormControl
             placeholder="City or Zipcode"

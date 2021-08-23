@@ -1,9 +1,9 @@
 .navbar-nav button {
-    margin: 0 5px;
+  margin: 0 5px;
 }
 
 .navbar-nav {
-    display: flex !important;
-    justify-content: end;
-    margin-top: 5px;
+  display: flex !important;
+  justify-content: flex-end;
+  margin-top: 5px;
 }

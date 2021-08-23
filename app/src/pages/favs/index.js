@@ -11,6 +11,10 @@ class FavsContainer extends React.Component {
     this.props.GetFavs();
   }
 
+  componentDidUpdate() {
+    this.props.GetFavs();
+  }
+
   render() {
     return (
       <div className="FavsPage">
